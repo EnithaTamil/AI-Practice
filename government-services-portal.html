@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>National Government Services Portal</title>
+  <meta name="description" content="Access citizen and business services, apply online, track applications, make payments, and find information on government programs." />
+</head>
+<body>
+  <a href="#main" title="Skip to main content">Skip to main content</a>
+
+  <header>
+    <h1>National Government Services Portal</h1>
+    <p>Unified access to citizen, business, and public services</p>
+
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="#search">Search</a></li>
+        <li><a href="#announcements">Announcements</a></li>
+        <li><a href="#featured">Featured Services</a></li>
+        <li><a href="#services">Service Categories</a></li>
+        <li><a href="#account">Account</a></li>
+        <li><a href="#applications">Apply Online</a></li>
+        <li><a href="#tracking">Track Application</a></li>
+        <li><a href="#payments">Payments</a></li>
+        <li><a href="#downloads">Downloads</a></li>
+        <li><a href="#faq">FAQs</a></li>
+        <li><a href="#feedback">Feedback</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section id="search" aria-labelledby="search-heading">
+      <h2 id="search-heading">Search services</h2>
+      <form>
+        <label for="q">Search by service name or keyword</label>
+        <input id="q" name="q" type="search" placeholder="e.g., birth certificate, license renewal" required />
+        <label for="region">Region (optional)</label>
+        <input id="region" name="region" type="text" placeholder="State / Province / City" />
+        <button type="submit">Search</button>
+      </form>
+    </section>
+
+    <section id="announcements" aria-labelledby="announcements-heading">
+      <h2 id="announcements-heading">Announcements and Notices</h2>
+      <ul>
+        <li>
+          <article>
+            <h3>Public Holiday Schedule Published</h3>
+            <p><time datetime="2026-01-01">1 Jan 2026</time></p>
+            <p>Government offices will remain closed on listed national holidays. Essential services remain operational.</p>
+          </article>
+        </li>
+        <li>
+          <article>
+            <h3>Identity Verification Update</h3>
+            <p><time datetime="2026-02-15">15 Feb 2026</time></p>
+            <p>Additional ID proof options are now accepted for online applications, including passport and voter ID.</p>
+          </article>
+        </li>
+        <li>
+          <article>
+            <h3>Scheduled Maintenance</h3>
+            <p><time datetime="2026-03-10">10 Mar 2026</time></p>
+            <p>Portal maintenance is scheduled from 01:00 to 03:00 local time. Services may be intermittently unavailable.</p>
+          </article>
+        </li>
+      </ul>
+    </section>
+
+    <section id="featured" aria-labelledby="featured-heading">
+      <h2 id="featured-heading">Featured Services</h2>
+      <ul>
+        <li>
+          <article>
+            <h3>Apply for Birth Certificate</h3>
+            <p>Online application for issuance of birth certificate with digital delivery.</p>
+            <p><a href="#app-birth">Start application</a> | <a href="#downloads">Download sample form</a></p>
+          </article>
+        </li>
+        <li>
+          <article>
+            <h3>Driving License Renewal</h3>
+            <p>Renew your driving license and update your address if required.</p>
+            <p><a href="#app-dl">Renew now</a> | <a href="#tracking">Track status</a></p>
+          </article>
+        </li>
+        <li>
+          <article>
+            <h3>Grievance Redressal</h3>
+            <p>Submit a complaint or grievance regarding public services.</p>
+            <p><a href="#app-grievance">Submit grievance</a></p>
+          </article>
+        </li>
+      </ul>
+    </section>
+
+    <section id="services" aria-labelledby="services-heading">
+      <h2 id="services-heading">Service Categories</h2>
+      <ul>
+        <li>
+          <h3>Citizen Services</h3>
+          <ul>
+            <li><a href="#app-birth">Birth Certificate</a></li>
+            <li><a href="#app-marriage">Marriage Registration</a></li>
+            <li><a href="#app-residence">Residence Certificate</a></li>
+          </ul>
+        </li>
+        <li>
+          <h3>Business and Trade</h3>
+          <ul>
+            <li><a href="#app-tradelicense">Trade License</a></li>
+            <li><a href="#app-gst">GST/Tax Registration</a></li>
+            <li><a href="#app-msme">Small Business (MSME) Registration</a></li>
+          </ul>
+        </li>
+        <li>
+          <h3>Transport</h3>
+          <ul>
+            <li><a href="#app-dl">Driving License Renewal</a></li>
+            <li><a href="#app-vehicle">Vehicle Registration</a></li>
+            <li><a href="#payments">Traffic Challan Payment</a></li>
+          </ul>
+        </li>
+        <li>
+          <h3>Health and Social Welfare</h3>
+          <ul>
+            <li><a href="#app-healthcard">Health Card</a></li>
+            <li><a href="#app-social">Social Welfare Benefits</a></li>
+            <li><a href="#app-pension">Pension Enrollment</a></li>
+          </ul>
+        </li>
+        <li>
+          <h3>Taxes and Revenue</h3>
+          <ul>
+            <li><a href="#payments">Property Tax Payment</a></li>
+            <li><a href="#payments">Water and Electricity Bills</a></li>
+            <li><a href="#app-landrecords">Land Records</a></li>
+          </ul>
+        </li>
+        <li>
+          <h3>Utilities</h3>
+          <ul>
+            <li><a href="#payments">Utility Payments</a></li>
+            <li><a href="#app-address">Address Change</a></li>
+            <li><a href="#downloads">Forms and Formats</a></li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <section id="account" aria-labelledby="account-heading">
+      <h2 id="account-heading">User Account</h2>
+      <div>
+        <section aria-labelledby="login-heading">
+          <h3 id="login-heading">Login</h3>
+          <form>
+            <label for="login-email">Email</label>
+            <input id="login-email" name="email" type="email" autocomplete="username" required />
+
+            <label for="login-pass">Password</label>
+            <input id="login-pass" name="password" type="password" autocomplete="current-password" required />
+
+            <label>
+              <input type="checkbox" name="remember" /> Remember me
+            </label>
+
+            <button type="submit">Sign in</button>
+            <p><a href="#">Forgot password?</a></p>
+          </form>
+        </section>
+
+        <section aria-labelledby="register-heading">
+          <h3 id="register-heading">Register</h3>
+          <form>
+            <label for="reg-name">Full name</label>
+            <input id="reg-name" name="name" type="text" autocomplete="name" required />
+
+            <label for="reg-email">Email</label>
+            <input id="reg-email" name="email" type="email" autocomplete="email" required />
+
+            <label for="reg-phone">Mobile number</label>
+            <input id="reg-phone" name="phone" type="tel" autocomplete="tel" />
+
+            <label for="reg-pass">Password</label>
+            <input id="reg-pass" name="password" type="password" autocomplete="new-password" required />
+
+            <label for="reg-pass2">Confirm password</label>
+            <input id="reg-pass2" name="confirm" type="password" required />
+
+            <label>
+              <input type="checkbox" name="terms" required /> I agree to the Terms of Service and Privacy Policy
+            </label>
+
+            <button type="submit">Create account</button>
+          </form>
+        </section>
+      </div>
+    </section>
+
+    <section id="applications" aria-labelledby="applications-heading">
+      <h2 id="applications-heading">Online Applications</h2>
+
+      <section id="app-birth" aria-labelledby="app-birth-heading">
+        <h3 id="app-birth-heading">Birth Certificate Application</h3>
+        <form>
+          <fieldset>
+            <legend>Applicant details</legend>
+            <label for="bc-name">Applicant full name</label>
+            <input id="bc-name" name="applicant_name" type="text" required />
+
+            <label for="bc-email">Email</label>
+            <input id="bc-email" name="email" type="email" required />
+
+            <label for="bc-phone">Phone</label>
+            <input id="bc-phone" name="phone" type="tel" />
+          </fieldset>
+
+          <fieldset>
+            <legend>Birth details</legend>
+            <label for="bc-dob">Date of birth</label>
+            <input id="bc-dob" name="dob" type="date" required />
+
+            <label for="bc-place">Place of birth</label>
+            <input id="bc-place" name="place" type="text" required />
+
+            <label for="bc-parent1">Parent/Guardian 1 name</label>
+            <input id="bc-parent1" name="parent1" type="text" required />
+
+            <label for="bc-parent2">Parent/Guardian 2 name</label>
+            <input id="bc-parent2" name="parent2" type="text" />
+
+            <label for="bc-address">Current address</label>
+            <textarea id="bc-address" name="address" rows="3"></textarea>
+          </fieldset>
+
+          <fieldset>
+            <legend>Attachments</legend>
+            <label for="bc-id">Identity proof (PDF/JPEG)</label>
+            <input id="bc-id" name="id_proof" type="file" accept=".pdf,.jpg,.jpeg,.png" />
+
+            <label for="bc-hosp">Hospital record (optional)</label>
+            <input id="bc-hosp" name="hospital_record" type="file" accept=".pdf,.jpg,.jpeg,.png" />
+          </fieldset>
+
+          <label>
+            <input type="checkbox" name="declaration" required /> I hereby declare that the information provided is true and correct.
+          </label>
+
+          <button type="submit">Submit application</button>
+          <button type="reset">Reset</button>
+        </form>
+      </section>
+
+      <section id="app-dl" aria-labelledby="app-dl-heading">
+        <h3 id="app-dl-heading">Driving License Renewal</h3>
+        <form>
+          <fieldset>
+            <legend>License details</legend>
+            <label for="dl-number">License number</label>
+            <input id="dl-number" name="license_number" type="text" required />
+
+            <label for="dl-expiry">Current expiry date</label>
+            <input id="dl-expiry" name="expiry" type="date" required />
+
+            <label for="dl-class">Vehicle class/category</label>
+            <input id="dl-class" name="class" type="text" placeholder="e.g., LMV, MCWG" />
+          </fieldset>
+
+          <fieldset>
+            <legend>Address</legend>
+            <p>If updating address, fill the new address fields below.</p>
+            <label for="dl-address1">Address line 1</label>
+            <input id="dl-address1" name="address1" type="text" />
+
+            <label for="dl-address2">Address line 2</label>
+            <input id="dl-address2" name="address2" type="text" />
+
+            <label for="dl-city">City</label>
+            <input id="dl-city" name="city" type="text" />
+
+            <label for="dl-state">State</label>
+            <input id="dl-state" name="state" type="text" />
+
+            <label for="dl-zip">ZIP/Postal code</label>
+            <input id="dl-zip" name="zip" type="text" />
+          </fieldset>
+
+          <fieldset>
+            <legend>Declarations</legend>
+            <label>
+              <input type="checkbox" name="medical" required /> I confirm that I am medically fit to drive.
+            </label>
+            <label>
+              <input type="checkbox" name="consent" required /> I consent to verification of my records with the transport authority.
+            </label>
+          </fieldset>
+
+          <button type="submit">Renew license</button>
+        </form>
+      </section>
+
+      <section id="app-grievance" aria-labelledby="app-grievance-heading">
+        <h3 id="app-grievance-heading">Grievance / Complaint Submission</h3>
+        <form>
+          <label for="gr-category">Category</label>
+          <select id="gr-category" name="category" required>
+            <option value="">Select a category</option>
+            <option>Public service delay</option>
+            <option>Corruption/Bribery</option>
+            <option>Infrastructure</option>
+            <option>Health and sanitation</option>
+            <option>Other</option>
+          </select>
+
+          <label for="gr-subject">Subject</label>
+          <input id="gr-subject" name="subject" type="text" required />
+
+          <label for="gr-desc">Description</label>
+          <textarea id="gr-desc" name="description" rows="5" required></textarea>
+
+          <label for="gr-location">Location (optional)</label>
+          <input id="gr-location" name="location" type="text" placeholder="Area / Ward / City" />
+
+          <label for="gr-file">Attachment (optional)</label>
+          <input id="gr-file" name="attachment" type="file" accept=".pdf,.jpg,.jpeg,.png" />
+
+          <label>
+            <input type="checkbox" name="anon" /> Submit anonymously (contact updates will not be sent)
+          </label>
+
+          <button type="submit">Submit grievance</button>
+        </form>
+      </section>
+    </section>
+
+    <section id="tracking" aria-labelledby="tracking-heading">
+      <h2 id="tracking-heading">Track Application</h2>
+      <form>
+        <label for="track-id">Application number</label>
+        <input id="track-id" name="application_number" type="text" required />
+
+        <label for="track-dob">Date of birth (for verification)</label>
+        <input id="track-dob" name="dob" type="date" />
+
+        <button type="submit">Check status</button>
+      </form>
+
+      <h3>Recent Applications</h3>
+      <table>
+        <caption>Sample application statuses</caption>
+        <thead>
+          <tr>
+            <th scope="col">Application #</th>
+            <th scope="col">Service</th>
+            <th scope="col">Submitted on</th>
+            <th scope="col">Current status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>BC-2026-00123</td>
+            <td>Birth Certificate</td>
+            <td><time datetime="2026-02-05">05 Feb 2026</time></td>
+            <td>Under review</td>
+          </tr>
+          <tr>
+            <td>DL-2026-00877</td>
+            <td>Driving License Renewal</td>
+            <td><time datetime="2026-02-01">01 Feb 2026</time></td>
+            <td>Approved</td>
+          </tr>
+          <tr>
+            <td>GR-2026-00045</td>
+            <td>Grievance</td>
+            <td><time datetime="2026-01-28">28 Jan 2026</time></td>
+            <td>Resolved</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="payments" aria-labelledby="payments-heading">
+      <h2 id="payments-heading">Payments</h2>
+      <form>
+        <label for="pay-type">Bill/Payment type</label>
+        <select id="pay-type" name="type" required>
+          <option value="">Select a type</option>
+          <option>Property Tax</option>
+          <option>Water Bill</option>
+          <option>Electricity Bill</option>
+          <option>Traffic Challan</option>
+          <option>Income Tax</option>
+        </select>
+
+        <label for="pay-ref">Consumer/Account/Challan number</label>
+        <input id="pay-ref" name="reference" type="text" required />
+
+        <label for="pay-amount">Amount</label>
+        <input id="pay-amount" name="amount" type="number" step="0.01" min="0" required />
+
+        <fieldset>
+          <legend>Payment method</legend>
+          <label><input type="radio" name="method" value="card" required /> Card</label>
+          <label><input type="radio" name="method" value="netbanking" /> Netbanking</label>
+          <label><input type="radio" name="method" value="upi" /> UPI</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Card details (if paying by card)</legend>
+          <label for="card-number">Card number</label>
+          <input id="card-number" name="card_number" type="text" inputmode="numeric" />
+
+          <label for="card-name">Name on card</label>
+          <input id="card-name" name="card_name" type="text" />
+
+          <label for="card-exp">Expiry (MM/YY)</label>
+          <input id="card-exp" name="card_exp" type="text" placeholder="MM/YY" />
+
+          <label for="card-cvv">CVV</label>
+          <input id="card-cvv" name="card_cvv" type="password" />
+        </fieldset>
+
+        <label>
+          <input type="checkbox" name="pay-consent" required /> I authorize the payment and agree to the terms.
+        </label>
+
+        <button type="submit">Pay now</button>
+      </form>
+    </section>
+
+    <section id="downloads" aria-labelledby="downloads-heading">
+      <h2 id="downloads-heading">Downloads</h2>
+      <ul>
+        <li><a href="#">Birth Registration Form (PDF)</a></li>
+        <li><a href="#">Driving License Renewal Form (PDF)</a></li>
+        <li><a href="#">Address Change Declaration (DOC)</a></li>
+        <li><a href="#">Income Certificate Application (PDF)</a></li>
+        <li><a href="#">Pension Enrollment Form (PDF)</a></li>
+      </ul>
+    </section>
+
+    <section id="faq" aria-labelledby="faq-heading">
+      <h2 id="faq-heading">Frequently Asked Questions</h2>
+      <details>
+        <summary>How long does it take to process a birth certificate application?</summary>
+        <p>Processing typically takes 5–7 business days after submission of complete and correct documents. Timelines may vary by region.</p>
+      </details>
+      <details>
+        <summary>Can I track my application without creating an account?</summary>
+        <p>Yes. Use the Track Application section with your application number and date of birth for verification.</p>
+      </details>
+      <details>
+        <summary>What payment methods are supported?</summary>
+        <p>Card, Netbanking, and UPI are supported. Some services may also allow cash payments at designated centers.</p>
+      </details>
+      <details>
+        <summary>What documents are required for driving license renewal?</summary>
+        <p>Typically your existing license, a passport-sized photograph, and medical fitness declaration. Additional documents may be required based on your region.</p>
+      </details>
+    </section>
+
+    <section id="feedback" aria-labelledby="feedback-heading">
+      <h2 id="feedback-heading">Feedback</h2>
+      <form>
+        <fieldset>
+          <legend>Rate your experience</legend>
+          <label><input type="radio" name="rating" value="1" required /> 1</label>
+          <label><input type="radio" name="rating" value="2" /> 2</label>
+          <label><input type="radio" name="rating" value="3" /> 3</label>
+          <label><input type="radio" name="rating" value="4" /> 4</label>
+          <label><input type="radio" name="rating" value="5" /> 5</label>
+        </fieldset>
+
+        <label for="fb-message">Comments</label>
+        <textarea id="fb-message" name="message" rows="4" placeholder="Tell us what worked well and what can be improved"></textarea>
+
+        <label>
+          <input type="checkbox" name="contact-ok" /> I am willing to be contacted for follow-up.
+        </label>
+
+        <button type="submit">Submit feedback</button>
+      </form>
+    </section>
+
+    <section id="contact" aria-labelledby="contact-heading">
+      <h2 id="contact-heading">Contact Us</h2>
+      <address>
+        Government Services Helpdesk<br />
+        123 Administrative Avenue, Capital City<br />
+        Phone: +1-800-000-1234 (24x7)<br />
+        Email: helpdesk@gov.example
+      </address>
+
+      <h3>Send us a message</h3>
+      <form>
+        <label for="ct-name">Your name</label>
+        <input id="ct-name" name="name" type="text" required />
+
+        <label for="ct-email">Your email</label>
+        <input id="ct-email" name="email" type="email" required />
+
+        <label for="ct-subject">Subject</label>
+        <input id="ct-subject" name="subject" type="text" required />
+
+        <label for="ct-msg">Message</label>
+        <textarea id="ct-msg" name="message" rows="5" required></textarea>
+
+        <label>
+          <input type="checkbox" name="ct-consent" required /> I agree to the processing of my personal data for the purpose of this query.
+        </label>
+
+        <button type="submit">Send message</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <nav aria-label="Footer">
+      <ul>
+        <li><a href="#">Accessibility</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Use</a></li>
+        <li><a href="#">Open Data</a></li>
+        <li><a href="#top">Back to top</a></li>
+      </ul>
+    </nav>
+    <p>&copy; <time datetime="2026">2026</time> National e-Governance Division. All rights reserved.</p>
+  </footer>
+</body>
+</html>

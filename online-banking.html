@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureBank - Online Banking</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f7fa;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .user-details {
+            font-size: 0.9rem;
+        }
+
+        .user-name {
+            font-weight: 600;
+        }
+
+        .user-status {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 1.3rem;
+            cursor: pointer;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Sidebar */
+        .layout {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+        }
+
+        .sidebar {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+        }
+
+        .menu-title {
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: #666;
+            margin-bottom: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .menu-item {
+            padding: 0.8rem 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: #666;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .menu-item:hover {
+            background: #f0f4ff;
+            color: #1e40af;
+        }
+
+        .menu-item.active {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+            color: white;
+        }
+
+        .menu-icon {
+            font-size: 1.2rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* Welcome Section */
+        .welcome-card {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .welcome-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .welcome-header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .welcome-header p {
+            opacity: 0.95;
+            font-size: 0.95rem;
+        }
+
+        /* Account Cards */
+        .accounts-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .account-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .account-card:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .account-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .account-type {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .account-icon {
+            font-size: 1.5rem;
+        }
+
+        .account-number {
+            color: #999;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        .balance-label {
+            color: #666;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .balance {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1e3a8a;
+            margin-bottom: 1.5rem;
+        }
+
+        .account-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .account-btn {
+            flex: 1;
+            padding: 0.6rem;
+            border: 1px solid #e0e0e0;
+            background: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #1e40af;
+            transition: all 0.3s;
+        }
+
+        .account-btn:hover {
+            background: #f0f4ff;
+            border-color: #1e40af;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        .actions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .action-item {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .action-item:hover {
+            background: #f0f4ff;
+            border-color: #1e40af;
+            transform: translateY(-5px);
+        }
+
+        .action-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .action-text {
+            font-weight: 600;
+            color: #333;
+            font-size: 0.95rem;
+        }
+
+        /* Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        /* Transactions */
+        .transactions-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .view-all {
+            color: #1e40af;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .view-all:hover {
+            text-decoration: underline;
+        }
+
+        .transaction-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.3s;
+        }
+
+        .transaction-item:hover {
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+
+        .transaction-icon {
+            width: 50px;
+            height: 50px;
+            background: #f0f4ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            min-width: 50px;
+        }
+
+        .transaction-details {
+            flex: 1;
+        }
+
+        .transaction-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.3rem;
+        }
+
+        .transaction-date {
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        .transaction-amount {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1e3a8a;
+        }
+
+        .transaction-amount.debit {
+            color: #dc2626;
+        }
+
+        /* Right Sidebar */
+        .right-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* Bills Section */
+        .bills-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .bill-item {
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .bill-icon {
+            font-size: 1.5rem;
+            min-width: 40px;
+        }
+
+        .bill-info {
+            flex: 1;
+        }
+
+        .bill-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.3rem;
+        }
+
+        .bill-date {
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        .bill-amount {
+            font-weight: 700;
+            color: #dc2626;
+        }
+
+        /* Offers Section */
+        .offers-section {
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .offers-section h3 {
+            margin-bottom: 1rem;
+        }
+
+        .offer-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.8rem;
+            border-radius: 6px;
+            margin-bottom: 0.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .offer-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Cards Section */
+        .cards-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .cards-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .card-item {
+            padding: 1rem;
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+            color: white;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-info h4 {
+            margin-bottom: 0.3rem;
+            font-size: 0.95rem;
+        }
+
+        .card-number {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            letter-spacing: 1px;
+        }
+
+        .card-status {
+            font-size: 0.8rem;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+        }
+
+        /* Security Section */
+        .security-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .security-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .security-icon {
+            font-size: 1.5rem;
+        }
+
+        .security-content {
+            flex: 1;
+        }
+
+        .security-title {
+            font-weight: 600;
+            color: #333;
+            font-size: 0.95rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .security-status {
+            font-size: 0.8rem;
+            color: #10b981;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background: white;
+            padding: 2rem;
+            border-top: 1px solid #e0e0e0;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 3rem;
+        }
+
+        footer a {
+            color: #1e40af;
+            text-decoration: none;
+            margin: 0 0.5rem;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .layout {
+                grid-template-columns: 200px 1fr;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .header-container {
+                padding: 0 1rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .actions-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+
+            .accounts-section {
+                grid-template-columns: 1fr;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .right-sidebar {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+            .right-sidebar > * {
+                flex: 1;
+                min-width: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .welcome-card h1 {
+                font-size: 1.3rem;
+            }
+
+            .balance {
+                font-size: 1.5rem;
+            }
+
+            .actions-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .action-icon {
+                font-size: 2rem;
+            }
+
+            .header-actions {
+                gap: 1rem;
+            }
+
+            .user-details {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">🏦 SecureBank</div>
+            <div class="header-actions">
+                <div class="user-info">
+                    <div class="user-avatar">👤</div>
+                    <div class="user-details">
+                        <div class="user-name">John Doe</div>
+                        <div class="user-status">Online</div>
+                    </div>
+                </div>
+                <div class="header-icons">
+                    <span title="Notifications">🔔</span>
+                    <span title="Messages">💬</span>
+                    <span title="Settings">⚙️</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <div class="layout">
+            <!-- Sidebar Navigation -->
+            <aside class="sidebar">
+                <div class="menu-title">Menu</div>
+                <a class="menu-item active" href="#">
+                    <span class="menu-icon">📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a class="menu-item" href="#">
+                    <span class="menu-icon">💰</span>
+                    <span>Accounts</span>
+                </a>
+                <a class="menu-item" href="#">
+                    <span class="menu-icon">📤</span>
+                    <span>Transfer</span>
+                </a>
+                <a class="menu-item" href="#">
+                    <span class="menu-icon">💳</span>
+                    <span>Cards</span>
+                </a>
+                <a class="menu-item" href="#">
+                    <span class="menu-icon">📱</span>
+                    <span>Mobile & Pay</span>
+                </a>
+                <a class="menu-item" href="#">
+                    <span class="menu-icon">📈</span>
+                    <span>Investments</span>
+                </a>
+                <a class="menu-item" href="#">
+                    <span class="menu-icon">🏠</span>
+                    <span>Loans</span>
+                </a>
+                <a class="menu-item" href="#">
+                    <span class="menu-icon">🛡️</span>
+                    <span>Security</span>
+                </a>
+
+                <div class="menu-title" style="margin-top: 2rem;">Support</div>
+                <a class="menu-item" href="#">
+                    <span class="menu-icon">❓</span>
+                    <span>Help</span>
+                </a>
+                <a class="menu-item" href="#">
+                    <span class="menu-icon">📞</span>
+                    <span>Contact</span>
+                </a>
+            </aside>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Welcome Section -->
+                <div class="welcome-card">
+                    <div class="welcome-header">
+                        <h1>Welcome back, John!</h1>
+                        <p>Here's your financial summary for today</p>
+                    </div>
+                </div>
+
+                <!-- Accounts Section -->
+                <div class="accounts-section">
+                    <div class="account-card">
+                        <div class="account-header">
+                            <div class="account-type">💳 Savings Account</div>
+                            <div class="account-icon">✓</div>
+                        </div>
+                        <div class="account-number">Account: ****5432</div>
+                        <div class="balance-label">Available Balance</div>
+                        <div class="balance">$45,230.50</div>
+                        <div class="account-actions">
+                            <button class="account-btn">View</button>
+                            <button class="account-btn">Transfer</button>
+                            <button class="account-btn">Details</button>
+                        </div>
+                    </div>
+
+                    <div class="account-card">
+                        <div class="account-header">
+                            <div class="account-type">🏦 Checking Account</div>
+                            <div class="account-icon">✓</div>
+                        </div>
+                        <div class="account-number">Account: ****8901</div>
+                        <div class="balance-label">Available Balance</div>
+                        <div class="balance">$12,540.75</div>
+                        <div class="account-actions">
+                            <button class="account-btn">View</button>
+                            <button class="account-btn">Transfer</button>
+                            <button class="account-btn">Details</button>
+                        </div>
+                    </div>
+
+                    <div class="account-card">
+                        <div class="account-header">
+                            <div class="account-type">📊 Money Market</div>
+                            <div class="account-icon">✓</div>
+                        </div>
+                        <div class="account-number">Account: ****6789</div>
+                        <div class="balance-label">Available Balance</div>
+                        <div class="balance">$28,900.00</div>
+                        <div class="account-actions">
+                            <button class="account-btn">View</button>
+                            <button class="account-btn">Transfer</button>
+                            <button class="account-btn">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <h2 class="section-title">Quick Actions</h2>
+                    <div class="actions-grid">
+                        <div class="action-item">
+                            <div class="action-icon">📤</div>
+                            <div class="action-text">Send Money</div>
+                        </div>
+                        <div class="action-item">
+                            <div class="action-icon">💳</div>
+                            <div class="action-text">Pay Bills</div>
+                        </div>
+                        <div class="action-item">
+                            <div class="action-icon">🎯</div>
+                            <div class="action-text">Deposit Check</div>
+                        </div>
+                        <div class="action-item">
+                            <div class="action-icon">📊</div>
+                            <div class="action-text">Investments</div>
+                        </div>
+                        <div class="action-item">
+                            <div class="action-icon">🏠</div>
+                            <div class="action-text">Apply Loan</div>
+                        </div>
+                        <div class="action-item">
+                            <div class="action-icon">🔐</div>
+                            <div class="action-text">Security</div>
+                        </div>
+                        <div class="action-item">
+                            <div class="action-icon">📱</div>
+                            <div class="action-text">Mobile Pay</div>
+                        </div>
+                        <div class="action-item">
+                            <div class="action-icon">🎁</div>
+                            <div class="action-text">Rewards</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dashboard Grid -->
+                <div class="dashboard-grid">
+                    <!-- Transactions Section -->
+                    <div class="transactions-section">
+                        <div class="section-header">
+                            <h2 class="section-title">Recent Transactions</h2>
+                            <a class="view-all" href="#">View All →</a>
+                        </div>
+
+                        <div class="transaction-item">
+                            <div class="transaction-icon">🛍️</div>
+                            <div class="transaction-details">
+                                <div class="transaction-title">Online Shopping</div>
+                                <div class="transaction-date">Today at 2:45 PM</div>
+                            </div>
+                            <div class="transaction-amount debit">-$89.99</div>
+                        </div>
+
+                        <div class="transaction-item">
+                            <div class="transaction-icon">🍔</div>
+                            <div class="transaction-details">
+                                <div class="transaction-title">Restaurant Dining</div>
+                                <div class="transaction-date">Today at 7:20 PM</div>
+                            </div>
+                            <div class="transaction-amount debit">-$45.50</div>
+                        </div>
+
+                        <div class="transaction-item">
+                            <div class="transaction-icon">💼</div>
+                            <div class="transaction-details">
+                                <div class="transaction-title">Salary Deposit</div>
+                                <div class="transaction-date">Jan 25, 2026 at 9:00 AM</div>
+                            </div>
+                            <div class="transaction-amount">+$3,500.00</div>
+                        </div>
+
+                        <div class="transaction-item">
+                            <div class="transaction-icon">⛽</div>
+                            <div class="transaction-details">
+                                <div class="transaction-title">Gas Station</div>
+                                <div class="transaction-date">Jan 24, 2026 at 3:15 PM</div>
+                            </div>
+                            <div class="transaction-amount debit">-$52.30</div>
+                        </div>
+
+                        <div class="transaction-item">
+                            <div class="transaction-icon">🏥</div>
+                            <div class="transaction-details">
+                                <div class="transaction-title">Medical Services</div>
+                                <div class="transaction-date">Jan 23, 2026 at 10:45 AM</div>
+                            </div>
+                            <div class="transaction-amount debit">-$150.00</div>
+                        </div>
+
+                        <div class="transaction-item">
+                            <div class="transaction-icon">📺</div>
+                            <div class="transaction-details">
+                                <div class="transaction-title">Streaming Service</div>
+                                <div class="transaction-date">Jan 22, 2026 at 12:00 AM</div>
+                            </div>
+                            <div class="transaction-amount debit">-$14.99</div>
+                        </div>
+                    </div>
+
+                    <!-- Right Sidebar -->
+                    <div class="right-sidebar">
+                        <!-- Upcoming Bills -->
+                        <div class="bills-section">
+                            <h2 class="section-title">Upcoming Bills</h2>
+                            
+                            <div class="bill-item">
+                                <div class="bill-icon">🏠</div>
+                                <div class="bill-info">
+                                    <div class="bill-name">Rent Payment</div>
+                                    <div class="bill-date">Due: Feb 1</div>
+                                </div>
+                                <div class="bill-amount">$1,500</div>
+                            </div>
+
+                            <div class="bill-item">
+                                <div class="bill-icon">📱</div>
+                                <div class="bill-info">
+                                    <div class="bill-name">Phone Bill</div>
+                                    <div class="bill-date">Due: Jan 30</div>
+                                </div>
+                                <div class="bill-amount">$89</div>
+                            </div>
+
+                            <div class="bill-item">
+                                <div class="bill-icon">⚡</div>
+                                <div class="bill-info">
+                                    <div class="bill-name">Electric Bill</div>
+                                    <div class="bill-date">Due: Feb 5</div>
+                                </div>
+                                <div class="bill-amount">$125</div>
+                            </div>
+
+                            <div class="bill-item">
+                                <div class="bill-icon">🚗</div>
+                                <div class="bill-info">
+                                    <div class="bill-name">Car Insurance</div>
+                                    <div class="bill-date">Due: Feb 10</div>
+                                </div>
+                                <div class="bill-amount">$200</div>
+                            </div>
+                        </div>
+
+                        <!-- Special Offers -->
+                        <div class="offers-section">
+                            <h3 style="margin-bottom: 1rem;">✨ Special Offers</h3>
+                            <div class="offer-item">🎉 Earn 2% Cashback on all purchases</div>
+                            <div class="offer-item">💰 Get $100 bonus on referral</div>
+                            <div class="offer-item">🏦 0% APR for 6 months on transfers</div>
+                        </div>
+
+                        <!-- Cards Management -->
+                        <div class="cards-section">
+                            <h2 class="section-title">My Cards</h2>
+                            <div class="cards-list">
+                                <div class="card-item">
+                                    <div class="card-info">
+                                        <h4>Visa Debit Card</h4>
+                                        <div class="card-number">•••• •••• •••• 5432</div>
+                                    </div>
+                                    <div class="card-status">Active</div>
+                                </div>
+
+                                <div class="card-item">
+                                    <div class="card-info">
+                                        <h4>Mastercard Premium</h4>
+                                        <div class="card-number">•••• •••• •••• 8901</div>
+                                    </div>
+                                    <div class="card-status">Active</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Security Status -->
+                        <div class="security-section">
+                            <h2 class="section-title">Security Status</h2>
+                            
+                            <div class="security-item">
+                                <div class="security-icon">🔐</div>
+                                <div class="security-content">
+                                    <div class="security-title">Two-Factor Auth</div>
+                                    <div class="security-status">✓ Enabled</div>
+                                </div>
+                            </div>
+
+                            <div class="security-item">
+                                <div class="security-icon">🔑</div>
+                                <div class="security-content">
+                                    <div class="security-title">Password</div>
+                                    <div class="security-status">✓ Strong</div>
+                                </div>
+                            </div>
+
+                            <div class="security-item">
+                                <div class="security-icon">📱</div>
+                                <div class="security-content">
+                                    <div class="security-title">Device Login</div>
+                                    <div class="security-status">✓ Verified</div>
+                                </div>
+                            </div>
+
+                            <div class="security-item">
+                                <div class="security-icon">🛡️</div>
+                                <div class="security-content">
+                                    <div class="security-title">Account Protected</div>
+                                    <div class="security-status">✓ Secured</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 SecureBank. All rights reserved. | 
+            <a href="#">Privacy Policy</a> | 
+            <a href="#">Terms of Service</a> | 
+            <a href="#">Security</a> | 
+            <a href="#">Contact Support</a>
+        </p>
+    </footer>
+
+    <script>
+        // Quick action buttons
+        const actionItems = document.querySelectorAll('.action-item');
+        actionItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const actionText = this.querySelector('.action-text').textContent;
+                alert(`Opening: ${actionText}`);
+            });
+        });
+
+        // Account buttons
+        const accountButtons = document.querySelectorAll('.account-btn');
+        accountButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const action = this.textContent;
+                const account = this.closest('.account-card').querySelector('.account-type').textContent;
+                alert(`${action} for ${account}`);
+            });
+        });
+
+        // Menu navigation
+        const menuItems = document.querySelectorAll('.menu-item');
+        menuItems.forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                menuItems.forEach(m => m.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Header icons
+        const headerIcons = document.querySelectorAll('.header-icons span');
+        headerIcons.forEach(icon => {
+            icon.addEventListener('click', function() {
+                alert(`Clicked on: ${this.getAttribute('title')}`);
+            });
+        });
+
+        // Offer items
+        const offerItems = document.querySelectorAll('.offer-item');
+        offerItems.forEach(item => {
+            item.addEventListener('click', function() {
+                alert(`Offer: ${this.textContent}`);
+            });
+        });
+
+        // View All Transactions
+        document.querySelector('.view-all').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Showing all transactions...');
+        });
+    </script>
+</body>
+</html>

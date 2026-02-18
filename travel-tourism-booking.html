@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelHub - Tourism Booking Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            margin-bottom: 2rem;
+        }
+
+        /* Search Section */
+        .search-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 1200px;
+            margin: -3rem auto 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .search-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            align-items: end;
+        }
+
+        .search-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .search-label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .search-input {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .search-btn {
+            background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .search-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Section Title */
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #333;
+        }
+
+        /* Destinations Grid */
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .destination-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .destination-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .destination-image {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .destination-info {
+            padding: 1.5rem;
+        }
+
+        .destination-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .destination-duration {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .destination-price {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #0066cc;
+            margin-bottom: 1rem;
+        }
+
+        .destination-rating {
+            margin-bottom: 1rem;
+        }
+
+        .stars {
+            color: #ffc107;
+            font-size: 0.9rem;
+        }
+
+        .destination-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .destination-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Deals Section */
+        .deals-section {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 10px;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .deals-section h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .deals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .deal-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s;
+        }
+
+        .deal-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .deal-discount {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .deal-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .deal-desc {
+            font-size: 0.9rem;
+            opacity: 0.95;
+            margin-bottom: 1rem;
+        }
+
+        .deal-btn {
+            background: white;
+            color: #ff6b6b;
+            padding: 0.6rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .deal-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Hotels Section */
+        .hotels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .hotel-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .hotel-card:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .hotel-image {
+            width: 100%;
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .hotel-details {
+            padding: 1.5rem;
+        }
+
+        .hotel-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .hotel-location {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hotel-amenities {
+            color: #666;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .hotel-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+        }
+
+        .hotel-price {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #0066cc;
+        }
+
+        .hotel-btn {
+            padding: 0.6rem 1.2rem;
+            background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .hotel-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Flights Section */
+        .flights-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            margin-bottom: 3rem;
+        }
+
+        .flights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .flight-card {
+            border: 1px solid #ddd;
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .flight-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .flight-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .flight-route {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .flight-airline {
+            color: #0066cc;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .flight-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .flight-time {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .flight-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+        }
+
+        .flight-price {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #0066cc;
+        }
+
+        .flight-btn {
+            padding: 0.6rem 1.2rem;
+            background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .flight-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Reviews Section */
+        .reviews-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            margin-bottom: 3rem;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .review-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #0066cc;
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .review-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .review-info h4 {
+            margin-bottom: 0.2rem;
+            color: #333;
+        }
+
+        .review-info p {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .review-rating {
+            color: #ffc107;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .review-text {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            margin-bottom: 3rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #eee;
+            padding: 1.5rem 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            font-weight: 700;
+            color: #333;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.3s;
+        }
+
+        .faq-question:hover {
+            color: #0066cc;
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .faq-answer {
+            color: #666;
+            margin-top: 1rem;
+            display: none;
+            line-height: 1.6;
+        }
+
+        .faq-answer.show {
+            display: block;
+        }
+
+        /* Booking Form */
+        .booking-section {
+            background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 10px;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .booking-section h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+
+        .booking-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            grid-column: 1 / -1;
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-submit {
+            grid-column: 1 / -1;
+            padding: 1rem;
+            background: white;
+            color: #0066cc;
+            border: none;
+            border-radius: 5px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            color: #333;
+        }
+
+        .feature-desc {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        footer a {
+            color: #0066cc;
+            text-decoration: none;
+            margin: 0 0.5rem;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 1rem;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .search-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .destinations-grid,
+            .hotels-grid,
+            .reviews-grid,
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .booking-form {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.4rem;
+            }
+
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">✈️ TravelHub</div>
+            <nav>
+                <a href="#destinations">Destinations</a>
+                <a href="#deals">Deals</a>
+                <a href="#hotels">Hotels</a>
+                <a href="#flights">Flights</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Discover Your Next Adventure</h1>
+            <p>Explore amazing destinations and book unforgettable experiences</p>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <div class="container" style="margin-top: -2rem;">
+        <div class="search-section">
+            <div class="search-grid">
+                <div class="search-item">
+                    <label class="search-label">📍 Where to?</label>
+                    <input type="text" class="search-input" placeholder="Search destination..." />
+                </div>
+                <div class="search-item">
+                    <label class="search-label">📅 Check-in</label>
+                    <input type="date" class="search-input" />
+                </div>
+                <div class="search-item">
+                    <label class="search-label">📅 Check-out</label>
+                    <input type="date" class="search-input" />
+                </div>
+                <div class="search-item">
+                    <label class="search-label">👥 Travelers</label>
+                    <select class="search-input">
+                        <option>1 Person</option>
+                        <option>2 Persons</option>
+                        <option>3-4 Persons</option>
+                        <option>5+ Persons</option>
+                    </select>
+                </div>
+                <button class="search-btn">Search</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Features Section -->
+        <h2 class="section-title">Why Choose TravelHub?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <div class="feature-title">Best Price Guarantee</div>
+                <div class="feature-desc">Get the lowest prices on flights, hotels, and tours with our price match guarantee.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <div class="feature-title">Secure Booking</div>
+                <div class="feature-desc">Your bookings are protected with SSL encryption and 24/7 customer support.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <div class="feature-title">Global Coverage</div>
+                <div class="feature-desc">Access to 500,000+ destinations and tour packages worldwide.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎁</div>
+                <div class="feature-title">Exclusive Deals</div>
+                <div class="feature-desc">Get access to exclusive member discounts and limited-time travel deals.</div>
+            </div>
+        </div>
+
+        <!-- Destinations Section -->
+        <h2 class="section-title" id="destinations">Featured Destinations</h2>
+        <div class="destinations-grid">
+            <div class="destination-card">
+                <div class="destination-image">🏔️</div>
+                <div class="destination-info">
+                    <div class="destination-name">Switzerland Alps</div>
+                    <div class="destination-duration">7 Days - All Inclusive</div>
+                    <div class="destination-price">$1,200</div>
+                    <div class="destination-rating">
+                        <span class="stars">★★★★★</span>
+                        <span>(4.8/5 - 2,340 reviews)</span>
+                    </div>
+                    <button class="destination-btn">View Details</button>
+                </div>
+            </div>
+
+            <div class="destination-card">
+                <div class="destination-image">🏖️</div>
+                <div class="destination-info">
+                    <div class="destination-name">Maldives Paradise</div>
+                    <div class="destination-duration">5 Days - Beach Resort</div>
+                    <div class="destination-price">$980</div>
+                    <div class="destination-rating">
+                        <span class="stars">★★★★★</span>
+                        <span>(4.9/5 - 3,120 reviews)</span>
+                    </div>
+                    <button class="destination-btn">View Details</button>
+                </div>
+            </div>
+
+            <div class="destination-card">
+                <div class="destination-image">🗼</div>
+                <div class="destination-info">
+                    <div class="destination-name">Paris Romance</div>
+                    <div class="destination-duration">4 Days - City Tour</div>
+                    <div class="destination-price">$1,450</div>
+                    <div class="destination-rating">
+                        <span class="stars">★★★★☆</span>
+                        <span>(4.7/5 - 1,890 reviews)</span>
+                    </div>
+                    <button class="destination-btn">View Details</button>
+                </div>
+            </div>
+
+            <div class="destination-card">
+                <div class="destination-image">🏛️</div>
+                <div class="destination-info">
+                    <div class="destination-name">Rome & Vatican</div>
+                    <div class="destination-duration">5 Days - History Tour</div>
+                    <div class="destination-price">$1,350</div>
+                    <div class="destination-rating">
+                        <span class="stars">★★★★★</span>
+                        <span>(4.8/5 - 2,670 reviews)</span>
+                    </div>
+                    <button class="destination-btn">View Details</button>
+                </div>
+            </div>
+
+            <div class="destination-card">
+                <div class="destination-image">🗻</div>
+                <div class="destination-info">
+                    <div class="destination-name">Mount Fuji Japan</div>
+                    <div class="destination-duration">6 Days - Adventure</div>
+                    <div class="destination-price">$1,600</div>
+                    <div class="destination-rating">
+                        <span class="stars">★★★★★</span>
+                        <span>(4.9/5 - 1,450 reviews)</span>
+                    </div>
+                    <button class="destination-btn">View Details</button>
+                </div>
+            </div>
+
+            <div class="destination-card">
+                <div class="destination-image">🦁</div>
+                <div class="destination-info">
+                    <div class="destination-name">African Safari</div>
+                    <div class="destination-duration">8 Days - Wildlife</div>
+                    <div class="destination-price">$2,100</div>
+                    <div class="destination-rating">
+                        <span class="stars">★★★★★</span>
+                        <span>(4.9/5 - 2,890 reviews)</span>
+                    </div>
+                    <button class="destination-btn">View Details</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Deals Section -->
+        <div class="deals-section" id="deals">
+            <h2>🎉 Limited Time Offers</h2>
+            <div class="deals-grid">
+                <div class="deal-card">
+                    <div class="deal-discount">50% OFF</div>
+                    <div class="deal-title">Summer Holidays</div>
+                    <div class="deal-desc">All beach destinations on sale</div>
+                    <button class="deal-btn">Book Now</button>
+                </div>
+
+                <div class="deal-card">
+                    <div class="deal-discount">30% OFF</div>
+                    <div class="deal-title">Europe Tours</div>
+                    <div class="deal-desc">City packages and cultural tours</div>
+                    <button class="deal-btn">Book Now</button>
+                </div>
+
+                <div class="deal-card">
+                    <div class="deal-discount">25% OFF</div>
+                    <div class="deal-title">Group Bookings</div>
+                    <div class="deal-desc">Special rates for 10+ travelers</div>
+                    <button class="deal-btn">Book Now</button>
+                </div>
+
+                <div class="deal-card">
+                    <div class="deal-discount">FREE</div>
+                    <div class="deal-title">Hotel Upgrade</div>
+                    <div class="deal-desc">Free room upgrade for bookings</div>
+                    <button class="deal-btn">Book Now</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hotels Section -->
+        <h2 class="section-title" id="hotels">Featured Hotels</h2>
+        <div class="hotels-grid">
+            <div class="hotel-card">
+                <div class="hotel-image">🏨</div>
+                <div class="hotel-details">
+                    <div class="hotel-name">Luxury Beach Resort</div>
+                    <div class="hotel-location">🌴 Maldives - 5 Star</div>
+                    <div class="hotel-amenities">
+                        ✓ Private Beach<br/>
+                        ✓ Water Sports<br/>
+                        ✓ Spa Services
+                    </div>
+                    <div class="hotel-footer">
+                        <div class="hotel-price">$299/night</div>
+                        <button class="hotel-btn">Book</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hotel-card">
+                <div class="hotel-image">🏰</div>
+                <div class="hotel-details">
+                    <div class="hotel-name">Historic Palace Hotel</div>
+                    <div class="hotel-location">🏛️ Rome - 5 Star</div>
+                    <div class="hotel-amenities">
+                        ✓ Historic Building<br/>
+                        ✓ Fine Dining<br/>
+                        ✓ Rooftop Terrace
+                    </div>
+                    <div class="hotel-footer">
+                        <div class="hotel-price">$349/night</div>
+                        <button class="hotel-btn">Book</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hotel-card">
+                <div class="hotel-image">🏔️</div>
+                <div class="hotel-details">
+                    <div class="hotel-name">Alpine Chalet</div>
+                    <div class="hotel-location">🇨🇭 Switzerland - 4 Star</div>
+                    <div class="hotel-amenities">
+                        ✓ Mountain Views<br/>
+                        ✓ Hiking Tours<br/>
+                        ✓ Fireplace Lounge
+                    </div>
+                    <div class="hotel-footer">
+                        <div class="hotel-price">$189/night</div>
+                        <button class="hotel-btn">Book</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hotel-card">
+                <div class="hotel-image">🌃</div>
+                <div class="hotel-details">
+                    <div class="hotel-name">Modern City Tower</div>
+                    <div class="hotel-location">🗼 Paris - 4 Star</div>
+                    <div class="hotel-amenities">
+                        ✓ City Views<br/>
+                        ✓ Gym & Spa<br/>
+                        ✓ Rooftop Bar
+                    </div>
+                    <div class="hotel-footer">
+                        <div class="hotel-price">$279/night</div>
+                        <button class="hotel-btn">Book</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hotel-card">
+                <div class="hotel-image">🏝️</div>
+                <div class="hotel-details">
+                    <div class="hotel-name">Tropical Island Escape</div>
+                    <div class="hotel-location">🏖️ Bali - 4 Star</div>
+                    <div class="hotel-amenities">
+                        ✓ Pool & Beach<br/>
+                        ✓ Yoga Classes<br/>
+                        ✓ Local Cuisine
+                    </div>
+                    <div class="hotel-footer">
+                        <div class="hotel-price">$129/night</div>
+                        <button class="hotel-btn">Book</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hotel-card">
+                <div class="hotel-image">🌆</div>
+                <div class="hotel-details">
+                    <div class="hotel-name">Business Suite Hotel</div>
+                    <div class="hotel-location">🗽 New York - 4 Star</div>
+                    <div class="hotel-amenities">
+                        ✓ Business Center<br/>
+                        ✓ 24h Room Service<br/>
+                        ✓ Concierge
+                    </div>
+                    <div class="hotel-footer">
+                        <div class="hotel-price">$249/night</div>
+                        <button class="hotel-btn">Book</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flights Section -->
+        <h2 class="section-title" id="flights">Flight Deals</h2>
+        <div class="flights-section">
+            <div class="flights-grid">
+                <div class="flight-card">
+                    <div class="flight-header">
+                        <div class="flight-route">NYC → Paris</div>
+                        <div class="flight-airline">Air France</div>
+                    </div>
+                    <div class="flight-details">
+                        <div class="flight-time">
+                            <span>08:30</span> → <span>20:45</span>
+                        </div>
+                        <div>9h 15m</div>
+                    </div>
+                    <div style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">
+                        ✓ 1 Stop • Non-refundable
+                    </div>
+                    <div class="flight-footer">
+                        <div class="flight-price">$450</div>
+                        <button class="flight-btn">Select</button>
+                    </div>
+                </div>
+
+                <div class="flight-card">
+                    <div class="flight-header">
+                        <div class="flight-route">NYC → Rome</div>
+                        <div class="flight-airline">Alitalia</div>
+                    </div>
+                    <div class="flight-details">
+                        <div class="flight-time">
+                            <span>10:00</span> → <span>22:30</span>
+                        </div>
+                        <div>10h 30m</div>
+                    </div>
+                    <div style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">
+                        ✓ Direct • Refundable
+                    </div>
+                    <div class="flight-footer">
+                        <div class="flight-price">$520</div>
+                        <button class="flight-btn">Select</button>
+                    </div>
+                </div>
+
+                <div class="flight-card">
+                    <div class="flight-header">
+                        <div class="flight-route">NYC → Tokyo</div>
+                        <div class="flight-airline">ANA Airlines</div>
+                    </div>
+                    <div class="flight-details">
+                        <div class="flight-time">
+                            <span>14:20</span> → <span>16:50+1</span>
+                        </div>
+                        <div>12h 30m</div>
+                    </div>
+                    <div style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">
+                        ✓ 1 Stop • Free Meals
+                    </div>
+                    <div class="flight-footer">
+                        <div class="flight-price">$680</div>
+                        <button class="flight-btn">Select</button>
+                    </div>
+                </div>
+
+                <div class="flight-card">
+                    <div class="flight-header">
+                        <div class="flight-route">NYC → London</div>
+                        <div class="flight-airline">British Airways</div>
+                    </div>
+                    <div class="flight-details">
+                        <div class="flight-time">
+                            <span>19:00</span> → <span>07:30+1</span>
+                        </div>
+                        <div>7h 30m</div>
+                    </div>
+                    <div style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">
+                        ✓ Direct • Premium Cabin
+                    </div>
+                    <div class="flight-footer">
+                        <div class="flight-price">$380</div>
+                        <button class="flight-btn">Select</button>
+                    </div>
+                </div>
+
+                <div class="flight-card">
+                    <div class="flight-header">
+                        <div class="flight-route">NYC → Dubai</div>
+                        <div class="flight-airline">Emirates</div>
+                    </div>
+                    <div class="flight-details">
+                        <div class="flight-time">
+                            <span>23:45</span> → <span>19:15+1</span>
+                        </div>
+                        <div>13h 30m</div>
+                    </div>
+                    <div style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">
+                        ✓ 1 Stop • Luxury Service
+                    </div>
+                    <div class="flight-footer">
+                        <div class="flight-price">$550</div>
+                        <button class="flight-btn">Select</button>
+                    </div>
+                </div>
+
+                <div class="flight-card">
+                    <div class="flight-header">
+                        <div class="flight-route">NYC → Sydney</div>
+                        <div class="flight-airline">Qantas</div>
+                    </div>
+                    <div class="flight-details">
+                        <div class="flight-time">
+                            <span>09:30</span> → <span>06:00+2</span>
+                        </div>
+                        <div>15h 30m</div>
+                    </div>
+                    <div style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">
+                        ✓ 2 Stops • Economy+
+                    </div>
+                    <div class="flight-footer">
+                        <div class="flight-price">$790</div>
+                        <button class="flight-btn">Select</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reviews Section -->
+        <h2 class="section-title">Customer Reviews</h2>
+        <div class="reviews-section">
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">👨</div>
+                        <div class="review-info">
+                            <h4>John Smith</h4>
+                            <p>Paris Trip - Jan 2026</p>
+                        </div>
+                    </div>
+                    <div class="review-rating">★★★★★ (5.0)</div>
+                    <div class="review-text">"Amazing experience! The entire trip was perfectly organized. The hotels were luxury and the tours were informative. Highly recommended!"</div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">👩</div>
+                        <div class="review-info">
+                            <h4>Sarah Johnson</h4>
+                            <p>Maldives Package - Dec 2025</p>
+                        </div>
+                    </div>
+                    <div class="review-rating">★★★★★ (5.0)</div>
+                    <div class="review-text">"Best vacation ever! Crystal clear beaches, perfect weather, and the resort was beyond expectations. TravelHub made everything so easy!"</div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">👨</div>
+                        <div class="review-info">
+                            <h4>Michael Chen</h4>
+                            <p>Japan Adventure - Nov 2025</p>
+                        </div>
+                    </div>
+                    <div class="review-rating">★★★★☆ (4.5)</div>
+                    <div class="review-text">"Great overall experience. The itinerary was well-planned with good balance between activities and relaxation. Would book again!"</div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">👩</div>
+                        <div class="review-info">
+                            <h4>Emma Davis</h4>
+                            <p>Europe Tour - Oct 2025</p>
+                        </div>
+                    </div>
+                    <div class="review-rating">★★★★★ (5.0)</div>
+                    <div class="review-text">"Professional, friendly, and incredibly helpful team. They answered all my questions promptly. The journey was unforgettable!"</div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">👨</div>
+                        <div class="review-info">
+                            <h4>David Williams</h4>
+                            <p>Safari Package - Sep 2025</p>
+                        </div>
+                    </div>
+                    <div class="review-rating">★★★★★ (5.0)</div>
+                    <div class="review-text">"Saw incredible wildlife, stayed in amazing camps, and experienced true African hospitality. Worth every penny!"</div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">👩</div>
+                        <div class="review-info">
+                            <h4>Lisa Anderson</h4>
+                            <p>Beach Getaway - Aug 2025</p>
+                        </div>
+                    </div>
+                    <div class="review-rating">★★★★☆ (4.8)</div>
+                    <div class="review-text">"Excellent value for money. Beautiful locations, good accommodations, and great service. Will definitely book my next trip here!"</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="faq-section">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How do I book a tour?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    Simply fill out our search form with your destination, travel dates, and number of travelers. Then browse through available packages and select the one that suits you best. Complete the booking process with your payment information.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What payment methods do you accept?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    We accept all major credit cards (Visa, Mastercard, American Express), PayPal, Apple Pay, and Google Pay. All transactions are encrypted and secure.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Can I cancel or modify my booking?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    Yes! Most packages can be modified up to 48 hours before departure. Cancellation policies vary by package. Check your booking confirmation for specific terms and conditions.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Are travel documents/visas included?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    Travel insurance can be added to your booking for additional cost. Visas and travel documents are your responsibility, though we provide guidance on requirements for your destination.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What's included in the tour packages?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    Package inclusions vary. Most include accommodation, guided tours, some meals, and airport transfers. Check the detailed itinerary for each package to see exactly what's included.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Do you offer group discounts?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    Yes! Groups of 10 or more people receive special discounts. Contact our group travel specialists for a customized quote and arrangement.
+                </div>
+            </div>
+        </div>
+
+        <!-- Booking Form Section -->
+        <div class="booking-section" id="contact">
+            <h2>Plan Your Perfect Trip</h2>
+            <form class="booking-form" onsubmit="handleBooking(event)">
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" placeholder="John Doe" required />
+                </div>
+                <div class="form-group">
+                    <label>Email Address *</label>
+                    <input type="email" placeholder="john@example.com" required />
+                </div>
+                <div class="form-group">
+                    <label>Phone Number *</label>
+                    <input type="tel" placeholder="+1 (555) 123-4567" required />
+                </div>
+                <div class="form-group">
+                    <label>Preferred Destination *</label>
+                    <select required>
+                        <option>Select Destination</option>
+                        <option>Switzerland Alps</option>
+                        <option>Maldives Paradise</option>
+                        <option>Paris Romance</option>
+                        <option>Rome & Vatican</option>
+                        <option>Mount Fuji Japan</option>
+                        <option>African Safari</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Travel Date *</label>
+                    <input type="date" required />
+                </div>
+                <div class="form-group">
+                    <label>Number of Travelers *</label>
+                    <select required>
+                        <option>Select Number</option>
+                        <option>1 Person</option>
+                        <option>2 Persons</option>
+                        <option>3-4 Persons</option>
+                        <option>5-10 Persons</option>
+                        <option>10+ Persons</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Special Requests</label>
+                    <textarea placeholder="Any special requirements or preferences..."></textarea>
+                </div>
+                <button type="submit" class="form-submit">Request Custom Itinerary</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 TravelHub - Your Gateway to Amazing Adventures. All rights reserved. | 
+            <a href="#">Privacy Policy</a> | 
+            <a href="#">Terms of Service</a> | 
+            <a href="#">Contact Us</a> | 
+            <a href="#">Blog</a>
+        </p>
+    </footer>
+
+    <script>
+        // Search functionality
+        document.querySelector('.search-btn').addEventListener('click', function() {
+            alert('Searching for your perfect destination...');
+        });
+
+        // Destination cards
+        document.querySelectorAll('.destination-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const destination = this.closest('.destination-card').querySelector('.destination-name').textContent;
+                alert(`Viewing details for: ${destination}`);
+            });
+        });
+
+        // Deal buttons
+        document.querySelectorAll('.deal-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                alert('Great choice! Redirecting to booking...');
+            });
+        });
+
+        // Hotel booking buttons
+        document.querySelectorAll('.hotel-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const hotel = this.closest('.hotel-card').querySelector('.hotel-name').textContent;
+                alert(`Booking: ${hotel}`);
+            });
+        });
+
+        // Flight selection
+        document.querySelectorAll('.flight-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const route = this.closest('.flight-card').querySelector('.flight-route').textContent;
+                alert(`Selected flight: ${route}`);
+            });
+        });
+
+        // FAQ toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const toggle = this.querySelector('.faq-toggle');
+                
+                answer.classList.toggle('show');
+                toggle.textContent = answer.classList.contains('show') ? '−' : '+';
+            });
+        });
+
+        // Booking form submission
+        function handleBooking(e) {
+            e.preventDefault();
+            alert('Thank you for your inquiry! Our team will contact you within 24 hours to finalize your trip details.');
+            e.target.reset();
+        }
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId.startsWith('#')) {
+                    const element = document.querySelector(targetId);
+                    if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

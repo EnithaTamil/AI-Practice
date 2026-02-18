@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Examination Registration Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 3rem;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .header h1 {
+            color: #333;
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .header-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-row.full {
+            grid-template-columns: 1fr;
+        }
+
+        .form-row.three-col {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 0.6rem;
+            color: #333;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .form-group label .required {
+            color: #ff6b6b;
+            margin-left: 0.3rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 0.9rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: all 0.3s;
+            background: #fafafa;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-group input::placeholder {
+            color: #999;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        /* Checkbox and Radio Styles */
+        .checkbox-group,
+        .radio-group {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 0.6rem;
+        }
+
+        .checkbox-item,
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .checkbox-item input[type="checkbox"],
+        .radio-item input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: #667eea;
+        }
+
+        .checkbox-item label,
+        .radio-item label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: 500;
+            color: #555;
+        }
+
+        /* File Upload */
+        .file-upload {
+            position: relative;
+        }
+
+        .file-upload input[type="file"] {
+            display: none;
+        }
+
+        .file-upload-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            border: 2px dashed #667eea;
+            border-radius: 8px;
+            background: #f0f4ff;
+            cursor: pointer;
+            transition: all 0.3s;
+            gap: 0.5rem;
+        }
+
+        .file-upload-label:hover {
+            background: #e8edff;
+            border-color: #764ba2;
+        }
+
+        .file-name {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        /* Terms & Conditions */
+        .terms-section {
+            background: #f0f4ff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .terms-section .checkbox-item {
+            margin-bottom: 1rem;
+        }
+
+        .terms-text {
+            color: #666;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .terms-text a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .terms-text a:hover {
+            text-decoration: underline;
+        }
+
+        /* Form Buttons */
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2.5rem;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-width: 150px;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        .btn-reset {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+        .btn-reset:hover {
+            background: #d0d0d0;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 2rem;
+            color: #2e7d32;
+            font-size: 0.95rem;
+        }
+
+        .info-box strong {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Help Text */
+        .help-text {
+            font-size: 0.85rem;
+            color: #999;
+            margin-top: 0.4rem;
+            font-style: italic;
+        }
+
+        /* Error State */
+        .error input,
+        .error select,
+        .error textarea {
+            border-color: #ff6b6b;
+            background: #fff5f5;
+        }
+
+        .error-message {
+            color: #ff6b6b;
+            font-size: 0.85rem;
+            margin-top: 0.4rem;
+        }
+
+        /* Success Message */
+        .success-message {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            color: #2e7d32;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+            }
+
+            .header h1 {
+                font-size: 1.6rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .form-row.three-col {
+                grid-template-columns: 1fr;
+            }
+
+            .checkbox-group,
+            .radio-group {
+                gap: 1rem;
+                flex-direction: column;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .form-section {
+                margin-bottom: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 1rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .header h1 {
+                font-size: 1.4rem;
+            }
+
+            .form-group label {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-icon">📝</div>
+            <h1>Online Examination Registration</h1>
+            <p>Register for your preferred examination and get started</p>
+        </div>
+
+        <!-- Info Box -->
+        <div class="info-box">
+            <strong>ℹ️ Important Information</strong>
+            Please fill out all required fields marked with <span class="required">*</span> carefully. Review all information before submitting.
+        </div>
+
+        <!-- Registration Form -->
+        <form id="examForm">
+            <!-- Personal Information Section -->
+            <div class="form-section">
+                <div class="section-title">👤 Personal Information</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name <span class="required">*</span></label>
+                        <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name <span class="required">*</span></label>
+                        <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email Address <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                        <span class="help-text">We'll send your exam details to this email</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number <span class="required">*</span></label>
+                        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="dob">Date of Birth <span class="required">*</span></label>
+                        <input type="date" id="dob" name="dob" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Gender <span class="required">*</span></label>
+                        <select id="gender" name="gender" required>
+                            <option value="">Select your gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                            <option value="prefer-not">Prefer not to say</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row full">
+                    <div class="form-group">
+                        <label for="address">Address <span class="required">*</span></label>
+                        <textarea id="address" name="address" placeholder="Enter your full address" required></textarea>
+                    </div>
+                </div>
+
+                <div class="form-row three-col">
+                    <div class="form-group">
+                        <label for="city">City <span class="required">*</span></label>
+                        <input type="text" id="city" name="city" placeholder="City" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="state">State/Province <span class="required">*</span></label>
+                        <input type="text" id="state" name="state" placeholder="State" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="zip">Postal Code <span class="required">*</span></label>
+                        <input type="text" id="zip" name="zip" placeholder="Postal Code" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="country">Country <span class="required">*</span></label>
+                        <select id="country" name="country" required>
+                            <option value="">Select your country</option>
+                            <option value="usa">United States</option>
+                            <option value="canada">Canada</option>
+                            <option value="uk">United Kingdom</option>
+                            <option value="australia">Australia</option>
+                            <option value="india">India</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="idNumber">ID/Passport Number <span class="required">*</span></label>
+                        <input type="text" id="idNumber" name="idNumber" placeholder="Enter your ID/Passport number" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Educational Information Section -->
+            <div class="form-section">
+                <div class="section-title">🎓 Educational Information</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="institution">Educational Institution <span class="required">*</span></label>
+                        <input type="text" id="institution" name="institution" placeholder="Enter your school/college name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="qualification">Current Qualification <span class="required">*</span></label>
+                        <select id="qualification" name="qualification" required>
+                            <option value="">Select qualification</option>
+                            <option value="10th">10th Grade</option>
+                            <option value="12th">12th Grade</option>
+                            <option value="graduation">Graduation</option>
+                            <option value="postgraduation">Post-Graduation</option>
+                            <option value="diploma">Diploma</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="branch">Subject/Branch <span class="required">*</span></label>
+                        <select id="branch" name="branch" required>
+                            <option value="">Select subject/branch</option>
+                            <option value="science">Science</option>
+                            <option value="commerce">Commerce</option>
+                            <option value="arts">Arts</option>
+                            <option value="engineering">Engineering</option>
+                            <option value="medical">Medical</option>
+                            <option value="law">Law</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="cgpa">Current CGPA/Percentage</label>
+                        <input type="text" id="cgpa" name="cgpa" placeholder="Enter your current CGPA/Percentage">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Examination Selection Section -->
+            <div class="form-section">
+                <div class="section-title">📋 Examination Details</div>
+
+                <div class="form-row full">
+                    <div class="form-group">
+                        <label for="examType">Select Examination <span class="required">*</span></label>
+                        <select id="examType" name="examType" required>
+                            <option value="">Choose an examination</option>
+                            <option value="jee-main">JEE Main</option>
+                            <option value="neet">NEET</option>
+                            <option value="gate">GATE</option>
+                            <option value="cat">CAT</option>
+                            <option value="upsc">UPSC Civil Services</option>
+                            <option value="bank-po">Bank PO Exam</option>
+                            <option value="ssc">SSC Combined Graduate Level</option>
+                            <option value="gre">GRE</option>
+                            <option value="gmat">GMAT</option>
+                            <option value="ielts">IELTS</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="examDate">Preferred Examination Date <span class="required">*</span></label>
+                        <input type="date" id="examDate" name="examDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="examCenter">Preferred Exam Center <span class="required">*</span></label>
+                        <select id="examCenter" name="examCenter" required>
+                            <option value="">Select exam center</option>
+                            <option value="center-1">Center 1 - New York</option>
+                            <option value="center-2">Center 2 - Los Angeles</option>
+                            <option value="center-3">Center 3 - Chicago</option>
+                            <option value="center-4">Center 4 - Houston</option>
+                            <option value="center-5">Center 5 - Phoenix</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row full">
+                    <div class="form-group">
+                        <label>Examination Category <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="category-general" name="category" value="general" required>
+                                <label for="category-general">General</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="category-obc" name="category" value="obc">
+                                <label for="category-obc">OBC</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="category-sc" name="category" value="sc">
+                                <label for="category-sc">SC</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="category-st" name="category" value="st">
+                                <label for="category-st">ST</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row full">
+                    <div class="form-group">
+                        <label>Do you have any disabilities? <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="disability-no" name="disability" value="no" required checked>
+                                <label for="disability-no">No</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="disability-yes" name="disability" value="yes">
+                                <label for="disability-yes">Yes</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row full" id="disabilityDetails" style="display: none;">
+                    <div class="form-group">
+                        <label for="disabilityType">Please specify your disability</label>
+                        <textarea id="disabilityType" name="disabilityType" placeholder="Describe your disability and required accommodations"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Information Section -->
+            <div class="form-section">
+                <div class="section-title">ℹ️ Additional Information</div>
+
+                <div class="form-row full">
+                    <div class="form-group">
+                        <label>How did you hear about this examination?</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="source-social" name="source" value="social-media">
+                                <label for="source-social">Social Media</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="source-friends" name="source" value="friends">
+                                <label for="source-friends">Friends/Family</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="source-website" name="source" value="website">
+                                <label for="source-website">Our Website</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="source-other" name="source" value="other">
+                                <label for="source-other">Other</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row full">
+                    <div class="form-group">
+                        <label for="comments">Additional Comments</label>
+                        <textarea id="comments" name="comments" placeholder="Any additional information you'd like to share"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Document Upload Section -->
+            <div class="form-section">
+                <div class="section-title">📄 Document Upload</div>
+
+                <div class="form-row full">
+                    <div class="form-group">
+                        <label for="photo">Passport Size Photo (JPG/PNG, Max 2MB) <span class="required">*</span></label>
+                        <div class="file-upload">
+                            <input type="file" id="photo" name="photo" accept="image/*" required>
+                            <label for="photo" class="file-upload-label">
+                                📷 Click to upload or drag your photo here
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row full">
+                    <div class="form-group">
+                        <label for="id">ID Proof (PDF/JPG/PNG, Max 5MB) <span class="required">*</span></label>
+                        <div class="file-upload">
+                            <input type="file" id="id" name="id" accept=".pdf,.jpg,.jpeg,.png" required>
+                            <label for="id" class="file-upload-label">
+                                📋 Click to upload or drag your ID proof here
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Terms & Conditions Section -->
+            <div class="form-section">
+                <div class="section-title">✓ Consent & Declaration</div>
+
+                <div class="terms-section">
+                    <div class="terms-text">
+                        <strong>Declaration:</strong> I hereby declare that all the information provided by me in this form is true, correct, and complete. I understand that any false information may lead to cancellation of my registration and/or examination.
+                    </div>
+
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">I accept the Terms and Conditions <span class="required">*</span></label>
+                    </div>
+
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="privacy" name="privacy" required>
+                        <label for="privacy">I agree to the Privacy Policy <span class="required">*</span></label>
+                    </div>
+
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="declaration" name="declaration" required>
+                        <label for="declaration">I declare that the information provided is accurate <span class="required">*</span></label>
+                    </div>
+
+                    <div class="terms-text" style="margin-top: 1rem;">
+                        By submitting this form, you consent to receive updates and communications regarding your examination. Read our <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a>.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Success Message -->
+            <div class="success-message" id="successMessage">
+                ✓ Your registration has been submitted successfully! You will receive a confirmation email shortly.
+            </div>
+
+            <!-- Form Buttons -->
+            <div class="button-group">
+                <button type="submit" class="btn btn-submit">Submit Registration</button>
+                <button type="reset" class="btn btn-reset">Clear Form</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Disability toggle
+        const disabilityYes = document.getElementById('disability-yes');
+        const disabilityNo = document.getElementById('disability-no');
+        const disabilityDetails = document.getElementById('disabilityDetails');
+
+        disabilityYes.addEventListener('change', function() {
+            if (this.checked) {
+                disabilityDetails.style.display = 'grid';
+            }
+        });
+
+        disabilityNo.addEventListener('change', function() {
+            if (this.checked) {
+                disabilityDetails.style.display = 'none';
+            }
+        });
+
+        // Form submission
+        const examForm = document.getElementById('examForm');
+        const successMessage = document.getElementById('successMessage');
+
+        examForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Validate form
+            if (examForm.checkValidity() === false) {
+                e.stopPropagation();
+            } else {
+                // Show success message
+                successMessage.style.display = 'block';
+                successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                // Clear form after 3 seconds
+                setTimeout(function() {
+                    examForm.reset();
+                    successMessage.style.display = 'none';
+                    disabilityDetails.style.display = 'none';
+                }, 3000);
+            }
+        });
+
+        // File upload preview
+        const photoInput = document.getElementById('photo');
+        const idInput = document.getElementById('id');
+
+        photoInput.addEventListener('change', function() {
+            if (this.files && this.files[0]) {
+                const fileName = this.files[0].name;
+                this.parentElement.querySelector('.file-upload-label').innerHTML = `✓ ${fileName} uploaded successfully`;
+            }
+        });
+
+        idInput.addEventListener('change', function() {
+            if (this.files && this.files[0]) {
+                const fileName = this.files[0].name;
+                this.parentElement.querySelector('.file-upload-label').innerHTML = `✓ ${fileName} uploaded successfully`;
+            }
+        });
+    </script>
+</body>
+</html>
